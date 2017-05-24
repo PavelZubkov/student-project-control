@@ -1,0 +1,119 @@
+Сущность Пользователь
+
+Описание:
+  Пользователь - это проекция реального человека на систему.
+  ...
+
+Своства:
+  Название--------------Тип--------------Описание
+  _id                   ObjectId          Ид пользователя, генерируется mongodb, индексируется, уникальное
+  username              String(12)        Уникальное
+  hashedPassword        String            
+  email                 String(20)        Уникальное
+  firstName             String(12)        
+  lastName              String(12)        
+  initials              String(2)         
+  projects              [ObjectId]
+  locked                boolean           Блокировка пользователя, по умолчанию false
+  dialogs               [ObjectId]        Массив указателей на диалоги пользователя        
+  ...
+
+Внешние методы:
+  /**
+   * Добавление нового пользователя в систему.
+   * @param  {Object}   user            Объект с данными нового пользователя,
+   *                                    содержит поля: username, password, email, firstName, lastName
+   * @param  {String}   user.username   Логин
+   * @param  {String}   user.password   Пароль
+   * @param  {String}   user.email      Адрес электронной почты
+   * @param  {String}   user.firstName  Имя
+   * @param  {String}   user.lastName   Фамилия
+   * @param  {Function} callback        Вызывается после завершения функции с параметрами err, _id
+   *                                    err - объект ошибки {Error}, если ошибки нет - null
+   *                                    _id - ид нового пользователя {ObjectId} 
+   * 
+   *
+   * Алгоритм:
+   */
+  function createUser(user, callback) {}
+
+  /**
+   * Производит аутентификацию пользователя
+   * @param  {String}   login    Логин
+   * @param  {String}   password Пароль
+   * @param  {Function} callback Вызывается с двумя параметрами err, _id
+   */
+  function authUser(login, password, callback) {}
+
+  /**
+   * Изменяет данные пользователя
+   * @param  {ObjectId}   id      Ид пользователя
+   * @param  {Object}  callback   Объект с новыми данными, может содержать поля:
+   *                              username, password, email, firstName, lastName, initials
+   * @param  {Function} callback  err, null
+   * @return {[type]}             [description]
+   */
+  function editUser(id, callback) {}
+
+  /**
+   * Удаляет пользователя из системы
+   * @param  {ObectId}   id       [description]
+   * @param  {Function} callback [description]
+   * @return {[type]}            [description]
+   */
+  function deleteUser(id, callback) {}
+
+  /**
+   * Возвращает список всех пользователей
+   * @param  {Object}    fields  [description]
+   * @param  {Function} callback [description]
+   * @return {[type]}            [description]
+   */
+  function getUsers(fields,callback) {}
+
+  function findUsers(fields, callback) {}
+  Создание пользователя - статический
+    Валидация введенных данных
+    Валидация username (Вал. -проверка на соответствие установленному формату)
+    Проверка username на занятость
+    Валидцаия пароля
+    Валидация email
+    Проверка email на занятость
+    Валидация firstName
+    Валидация lastName
+    Генерация initials
+    Хеширование пароля
+            schema.methods.encryptPassword = function(password) {
+              return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
+            };
+
+            schema.virtual('password')
+              .set(function(password) {
+                this._plainPassword = password;
+                this.salt = Math.random() + '';
+                this.hashedPassword = this.encryptPassword(password);
+              })
+              .get(function() { return this._plainPassword; });
+
+            schema.methods.checkPassword = function(password) {
+              return this.encryptPassword(password) === this.hashedPassword;
+            };
+  Авторизация пользователя - статический
+  Изменение пользовательких данных
+    Изменение username
+    Изменение hashedPassword
+    Изменение email
+    Изменение firstName
+    Изменение lastName
+    Изменение initials
+    Валидация initials
+  Удаление пользователя
+  Возврат списка пользователей
+  Поиск пользователя
+  Возврат данных пользователя
+  Добавление пользователя в проект
+  Удаление пользователя из проекта
+  Блокировка пользователя
+
+
+  

@@ -1,0 +1,24 @@
+{
+  "name": "student-project",
+  "version": "0.0.1",
+  "description": "Simple student project managment system",
+  "main": "server.js",
+  "author": "pavel zubkov",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongodb": "^2.2.26",
+    "nconf": "^0.8.4",
+    "validator": "^7.0.0",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {    
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0",
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --watch --bail ./test/",
+    "start": "./node_modules/.bin/nodemon server.js"
+  }
+}
