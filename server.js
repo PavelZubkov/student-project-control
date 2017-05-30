@@ -16,4 +16,3 @@ db.connect(config.get('db:url'), function(err) {
     log.info('Server started on', config.get('port'));
   });
 });
-

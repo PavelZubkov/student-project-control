@@ -1,11 +1,12 @@
 const MongoClient = require('mongodb').MongoClient;
 
-const state = {
-  db: null
+const mongo = {
+  db: null,
+  users: null
 };
 
 exports.connect = function (url, done) {
-  if (state.db) {
+  if (mongo.db) {
     return done();
   }
 
@@ -13,11 +14,17 @@ exports.connect = function (url, done) {
     if (err) {
       return done(err);
     }
-    state.db = db;
-    done();
+    mongo.db = db;
+    db.collection('users', function(err, users) {
+      if (err) { 
+        throw err;
+      }
+      mongo.users = users;
+      done();
+    });
   });
 }
 
 exports.get = function () {
-  return state.db;
+  return mongo;
 }

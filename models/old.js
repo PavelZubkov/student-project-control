@@ -1,4 +1,4 @@
-
+// моя первая реализация функции save
 "use strict";
 const db = require('../libs/db.js').get();
 const crypto = require('crypto');
