@@ -97,3 +97,20 @@ exports.User = schema({
     ]
   }
 });
+
+exports.Password = schema({
+  password: {
+    required: [
+      true,
+      'требуется password'
+    ],
+    type: [
+      'string',
+      'password должен иметь тип string' 
+    ],
+    match: [
+      /^[a-zA-Z][a-zA-Z0-9-_\.]{6,20}$/,
+      'password должен иметь длину от 6 до 20 символов'
+    ]
+  }
+});

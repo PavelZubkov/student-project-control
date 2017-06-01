@@ -1,40 +1,13 @@
-const schema = require('validate');
+// put your javascript (node.js) code here
+process.stdin.setEncoding('utf8');
 
-const user = schema({
-  username: {
-    required: [
-      true,
-      'требуется username'
-    ],
-    type: [
-      'string',
-      'username должен иметь тип string' 
-    ],
-    match: [
-      /^[a-zA-Z][a-zA-Z0-9-_\.]{2,12}$/,
-      'username должен начинаться с буквы и может состоять из букв латинского алфавита, цифр и знаков ".", "-", "_"'
-    ]
-  },
-  password: {
-    required: [
-      true,
-      'требуется username'
-    ],
-    type: [
-      'string',
-      'username должен иметь тип string' 
-    ],
-    match: [
-      /^[a-zA-Z][a-zA-Z0-9-_\.]{2,12}$/,
-      'username должен начинаться с буквы и может состоять из букв латинского алфавита, цифр и знаков ".", "-", "_"'
-    ]
+process.stdin.on('readable', () => {
+  let param = process.stdin.read();
+  if (param !== null) {
+    let out = param.split(' ').reduce(function(prev, curr) {
+      return parseInt(prev) + parseInt(curr);
+    });
+    process.stdout.write(out.toString());
   }
 });
 
-const usr1 = {
-  username: '1asd'
-};
-
-const error = user.validate(usr1);
-
-console.log(error);

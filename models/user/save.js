@@ -13,7 +13,7 @@ const encryptPassword = function encryptPassword(password) {
   return hashedPassword;
 }
 /**
-* Добавляет необходимые поля
+* Добавляет недостающие поля поля
 */
 const prepare = function prepare(user) {
   user.initials = (user.firstName[0] + user.lastName[0]).toUpperCase();
