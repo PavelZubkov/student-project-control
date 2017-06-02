@@ -50,7 +50,7 @@ exports.User = schema({
       'password должен иметь тип string' 
     ],
     match: [
-      /^[a-zA-Z][a-zA-Z0-9-_\.]{6,20}$/,
+      /^[a-zA-Z][a-zA-Z0-9-_\.]{5,20}$/,
       'password должен иметь длину от 6 до 20 символов'
     ]
   },
@@ -109,7 +109,7 @@ exports.Password = schema({
       'password должен иметь тип string' 
     ],
     match: [
-      /^[a-zA-Z][a-zA-Z0-9-_\.]{6,20}$/,
+      /^[a-zA-Z][a-zA-Z0-9-_\.]{5,20}$/,
       'password должен иметь длину от 6 до 20 символов'
     ]
   }

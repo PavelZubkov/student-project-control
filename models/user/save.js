@@ -8,10 +8,12 @@ const User = require('../schema.js').User;
 * Хеширует пароль
 */
 const encryptPassword = function encryptPassword(password) {
-  const salt = Math.random() + '';
+  // const salt = Math.random() + '';
+  const salt = 'salt:(';
   const hashedPassword = crypto.createHmac('sha1', salt).update(password).digest('hex');
   return hashedPassword;
 }
+exports.encryptPassword = encryptPassword;
 /**
 * Добавляет недостающие поля поля
 */
@@ -101,6 +103,7 @@ exports.save = function save(user, cb) {
     }
 
     user = prepare(user);
+    
 
     db.users.insertOne(
       user,
