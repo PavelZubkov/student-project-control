@@ -6,6 +6,35 @@ const ObjectId = require('mongodb').ObjectId;
 const encryptPassword = require('./save.js').encryptPassword;
 
 /**
+ * Проверка существования связки id + password
+ *
+ */
+const checkIdAndPassword = function checkIdAndPassword(id, hashedPassword, cb) {
+  const query = {
+    $and: [
+      { _id: id },
+      { hashedPassword: hashedPassword }
+    ]
+  };
+  
+  db.users.findOneAndDelete(
+    query,
+    { projection: { _id: 1 } },
+    function(err, r) {
+      if (err) {
+        return cb (err);
+      }
+      // r.value = null, если документ не найден
+      // если найден, то r.value = найденому документы
+      if (r.value === null) {
+        return cb(new Error('не правильный пароль'));
+      } else {
+        return cb(null);
+      }
+    }
+  );
+};
+/**
  * Удаляет пользователя из системы.
  * @param {ObjectId} id ид документа, сгенерированый монго
  * @param {String} password пароль, пользователя
@@ -34,28 +63,12 @@ exports.remove = function remove(id, password, cb) {
   
   const hashedPassword = encryptPassword(password);
   
-  const query = {
-    $and: [
-      { _id: id },
-      { hashedPassword: hashedPassword }
-    ]
-  };
-  
-  db.users.findOneAndDelete(
-    query,
-    { projection: { _id: 1 } },
-    function(err, r) {
-      if (err) {
-        return cb (err);
-      }
-      // r.value = null, если документ не найден
-      // если найден, то r.velue = найденому документы
-      if (r.value === null) {
-        return cb(new Error('не правильный пароль'));
-      } else {
-        return cb(null);
-      }
+  checkIdAndPassword(id, hashedPassword, function(err) {
+    if (err) {
+      return cb(err);
+    } else {
+      return cb(null);
     }
-  );
+  });
 
 };

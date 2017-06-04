@@ -31,16 +31,18 @@ const prepare = function prepare(user) {
  */
 const checkDB = function checkDB(user, cb) {
   const query = {
-    $or: [
-      {
-        username: user.username
-      },
-      {
-        email: user.email
-      }
-    ]
+    $or: []
   };
-
+  if (user.username !== undefined) {
+    query.$or.push( { username: user.username } );
+  }
+  if (user.email !== undefined) {
+    query.$or.push( { email: user.email } );
+  }
+  if (user.username === undefined && user.email === undefined) {
+    return cb(null);
+  }
+  
   const cursor = db.users.find(query);
   const errors = [];
   cursor.toArray(function(err, docs) {

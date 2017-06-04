@@ -36,7 +36,7 @@ exports.User = schema({
       'username должен иметь тип string' 
     ],
     match: [
-      /^[a-zA-Z][a-zA-Z0-9-_\.]{2,20}$/,
+      /^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/,
       'username должен начинаться с буквы и может состоять из символов латинского алфавита, цифр и знаков ".", "-", "_". Иметь длину от 2 до 20 символов'
     ]
   },
@@ -109,8 +109,108 @@ exports.Password = schema({
       'password должен иметь тип string' 
     ],
     match: [
-      /^[a-zA-Z][a-zA-Z0-9-_\.]{5,20}$/,
+      /^[a-zA-Z][a-zA-Z0-9-_\.]{5,19}$/,
       'password должен иметь длину от 6 до 20 символов'
+    ]
+  }
+});
+
+exports.requiredOffUser = schema({
+  username: {
+    required: [
+      false,
+      'требуется username'
+    ],
+    type: [
+      'string',
+      'username должен иметь тип string' 
+    ],
+    match: [
+      /^[a-zA-Z][a-zA-Z0-9-_\.]{1,19}$/,
+      'username должен начинаться с буквы и может состоять из символов латинского алфавита, цифр и знаков ".", "-", "_". Иметь длину от 2 до 20 символов'
+    ]
+  },
+  oldPassword: {
+    required: [
+      false,
+      'требуется password'
+    ],
+    type: [
+      'string',
+      'password должен иметь тип string' 
+    ],
+    match: [
+      /^[a-zA-Z][a-zA-Z0-9-_\.]{5,19}$/,
+      'password должен иметь длину от 6 до 20 символов'
+    ]
+  },
+  newPassword: {
+    required: [
+      false,
+      'требуется password'
+    ],
+    type: [
+      'string',
+      'password должен иметь тип string' 
+    ],
+    match: [
+      /^[a-zA-Z][a-zA-Z0-9-_\.]{5,19}$/,
+      'password должен иметь длину от 6 до 20 символов'
+    ]
+  },
+  email: {
+    required: [
+      false,
+      'требуется email'
+    ],
+    type: [
+      'string',
+      'email должен иметь тип string' 
+    ],
+    match: [
+      /@/,
+      'email имеет не правильный формат'
+    ]
+  },
+  firstName: {
+    required: [
+      false,
+      'требуется firstName'
+    ],
+    type: [
+      'string',
+      'firstName должен иметь тип string' 
+    ],
+    match: [
+      /^[а-яА-ЯёЁa-zA-Z][а-яА-ЯёЁa-zA-Z0-9]{0,11}$/,
+      'firstName имеет не правильный формат'
+    ]
+  },
+  lastName: {
+    required: [
+      false,
+      'требуется lastName'
+    ],
+    type: [
+      'string',
+      'lastName должен иметь тип string' 
+    ],
+    match: [
+      /^[а-яА-ЯёЁa-zA-Z][а-яА-ЯёЁa-zA-Z0-9]{0,11}$/,
+      'lastName имеет не правильный формат'
+    ]
+  },
+  initials: {
+    required: [
+      false  
+    ],
+    type: [
+      'string',
+      'initials должен иметь тип string'
+    ],
+    match: [
+      /^[А-ЯA-Z]{2}$/,
+      'initials должен состоять из двух заглавных русских букв'
     ]
   }
 });
