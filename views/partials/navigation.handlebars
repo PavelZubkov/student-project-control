@@ -3,19 +3,19 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">Главная</a>
-                </div>
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="/feed">Новости</a></li>
-                    <li><a href="#">Обратная связь</a></li>
+                    <li><a href="/">Мои проекты</a></li>
+                    <li><a href="#">События</a></li>
+                    <li><a href="#">Поддержка</a></li>
+                    <li><a href="/profile">Профиль</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {{#unless user}}
                         <li><a href="/signin">Вход</a></li>
                         <li><a href="/signup">Регистрация</a></li>
                     {{else}}
-                        {{> topUserMenu}}
+                        <li><a class="navbar-brand" href="/profile">{{user.firstName}} {{user.lastName}}</a></li>
+                        <li><a href="/signout">Выход</a></li>
                     {{/unless}}
                 </ul>
             </div>

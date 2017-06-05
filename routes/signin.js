@@ -6,10 +6,16 @@ const log = require('../libs/log.js')(module);
 const User = require('../models/user');
 
 router.get('/', function(req, res, next) {
-	res.render('signin');
+	// Если уже залогинен - можно перенаправить на main
+	if (req.session.userId) {
+		res.redirect('/');
+	} else {
+		res.render('signin');
+	}
 });
 
 router.post('/', function(req, res, next) {
+	// Нужно ли посылать, если уже авторизован? 
 	const username = req.body.username;
 	const password = req.body.password;
 	if (!username || !password) {
