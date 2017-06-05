@@ -1,0 +1,49 @@
+<!-- modals -->
+	<!-- add new project -->
+<div class="modal fade" id="list-of-task_modals_create-task" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Создание задачи</h4>
+			</div>
+			<div class="modal-body row">
+	  			<div class="col-md-8">
+				  	<label for="name">Название*</label>
+				  	<input type="text" class="form-control" id="name" name="name">
+					<label for="description">Описание</label>
+				  	<textarea class="form-control" rows="3" id="description" name="description"></textarea>
+				  	<label>Положение в списке</label><br>
+					  	<select class="selectpicker pull-left" data-width="24%" name="position-pre" id="position-pre">
+						  	<option value="after">После</option>
+						  	<option value="before">Перед</option>
+						</select>
+					  	<select class="selectpicker pull-right" data-width="74%" name="position-post" id="position-post"data-size="5" title="По умолчанию - в конец списка" data-live-search="true">
+							
+						</select>
+	  			</div>
+	  			<div class="col-md-4">
+	  				<label for="datepicker">Срок</label>
+	  				<input type="text" class="form-control" id="datepicker" name="datepicker" placeholder="Выбрать...">
+	  				<label for="status">Состояние</label>
+				  	<select class="selectpicker" data-width="100%" name="status" id="status">
+						  	<option value="planning">Черновик</option>
+						  	<option value="queue">В очереди</option>
+						  	<option value="executed">Выполненная</option>
+						  	<option value="value">Завершенная</option>
+					</select>
+					<label for="members">Ответственные</label>
+					<select class="selectpicker" data-width="100%" name="members" id="members" multiple title="Выбрать..." data-live-search="true" data-size="5">
+					</select>
+	  			</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+				<button type="button" class="btn btn-primary" id="btnCreateTask">Создать</button>
+			</div>
+		</div>
+	</div>
+</div> <!-- /add new project -->
+
+
+<!-- /modals -->
