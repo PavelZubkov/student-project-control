@@ -1,0 +1,43 @@
+.profile .header {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.profile .mega-initials {
+	margin: 0;
+	padding: 10px 13px;
+	display: inline-block;
+	/*background-color: #337ab7;*/
+	border: 1px;
+	border-color: #337ab7;
+	border-radius: 3px;
+	color: rgb(240, 240, 240);
+	font-family: "Helvetica Neue", Helvetica, Arial;
+	font-size: 50px;
+}
+
+.profile .name {
+  font-family: "Helvetica Neue", Helvetica, Arial;
+	font-size: 40px;
+	margin-top: 15px;
+}
+
+.profile .form-group label {
+  font-size: 18px;
+}
+
+.profile .form-group .props {
+  font-size: 18px;
+}
+
+.profile .form-group {
+  margin-bottom: 0;
+}
+
+.profile hr {
+  margin-bottom: 0;
+}
+
+.profile .delete-account {
+  padding-top: 0;
+}

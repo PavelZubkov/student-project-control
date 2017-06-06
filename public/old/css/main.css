@@ -1,0 +1,95 @@
+.sidebar .btn {
+	text-align: left;
+}
+.sidebar .glyphicon {
+	margin-right: 10px;
+}
+.inspect-panel .glyphicon {
+	margin-right: 10px;
+}
+.sidebar {
+	margin-top: 25px;
+}
+.table > tbody {
+	cursor: pointer;
+}
+.col-number {
+	width: 25px;
+}
+.col-name-project {
+	width: 380px;
+}
+.col-progress {
+	width: 150px;
+}
+.inspect-panel {
+	margin-top: 20px;
+}
+.progress {
+	margin-bottom: 0px;
+}
+.progress {
+	margin-bottom: 0px;
+}
+.progress-bar {
+	min-width: 20%;
+}
+.bg-selected {
+    color: #000;
+    background-color: #dedede;
+}
+.list-of-tasks .column-number {
+	width: 25px;
+}
+.list-of-tasks .column-name {
+	width: 300px;
+}
+.list-of-tasks .column-members {
+	width: 100px;
+}
+.list-of-tasks .table-hover {
+	cursor: default;
+}
+.list-of-tasks .col-name {
+	cursor: text;
+}
+.list-of-tasks .rowAddTask {
+	cursor: pointer;
+}
+.list-of-tasks .scaleHover {
+	transform: scale(1.2);
+}
+.list-of-tasks .scaleActive {
+	transform: scale(1);
+}
+.list-of-tasks .inputNameNewTask {
+	height: 20px;
+	padding: 0;
+	padding-left: 5px;
+}
+.list-of-tasks .btnAddTaskOk:hover {
+	transform: scale(1.2);
+}
+.list-of-tasks .btnAddTaskOk:active {
+	transform: scale(1);
+}
+.list-of-tasks .btnAddTaskCancel:hover {
+	transform: scale(1.2);
+}
+.list-of-tasks .btnAddTaskCancel:active {
+	transform: scale(1);
+}
+.mini-initials {
+	margin: 0;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	padding: 0px 3px;
+	display: inline-block;
+	background-color: #337ab7;
+	border: 1px;
+	border-color: #337ab7;
+	border-radius: 3px;
+	color: rgb(255, 255, 255);
+	font-family: "Helvetica Neue", Helvetica, Arial;
+	font-size: 12px;
+}

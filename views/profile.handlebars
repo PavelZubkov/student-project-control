@@ -1,0 +1,85 @@
+<div class="container profile">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+          <div class="header">
+            <div class="row">
+                <div class="col-md-3">
+                  <span class="mega-initials bg-primary pull-right">{{user.initials}}</span>
+                </div>
+                <div class="col-md-9">
+                  <div class="name">{{user.firstName}} {{user.lastName}}</div>
+                </div>
+              </div>
+          </div>
+          <form>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3">
+                  <label class="pull-right">Имя:</label>
+                </div>
+                <div class="col-md-9">
+                  <span class="props">{{user.firstName}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3">
+                  <label class="pull-right">Фамилия:</label>
+                </div>
+                <div class="col-md-9">
+                  <span class="props">{{user.lastName}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3">
+                  <label class="pull-right">Инициалы:</label>
+                </div>
+                <div class="col-md-9">
+                  <span class="props">{{user.initials}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3">
+                  <label class="pull-right">Эл. почта:</label>
+                </div>
+                <div class="col-md-9">
+                  <span class="props">{{user.email}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3">
+                  <label class="pull-right">Логин:</label>
+                </div>
+                <div class="col-md-9">
+                  <span class="props">{{user.username}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3">
+                  <label class="pull-right">Пароль:</label>
+                </div>
+                <div class="col-md-9">
+                  <span class="props">************</span>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary center-block">Изменить</button>
+            <hr>
+            <button type="button" class="btn btn-link delete-account center-block">Удалить учетную запись</a>
+          </form>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-1"></div>
+    </div>
+</div>

@@ -5,4 +5,5 @@ module.exports = function(app) {
 	app.use('/signin', require('./signin.js'));
 	app.use('/signup', require('./signup.js'));
 	app.use('/signout', require('./signout.js'));
+	app.use('/profile', require('./profile.js'));
 };
