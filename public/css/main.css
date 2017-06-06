@@ -31,7 +31,7 @@
 }
 
 .profile .form-group {
-  margin-bottom: 0;
+  margin-bottom: 3px;
 }
 
 .profile hr {
@@ -40,4 +40,12 @@
 
 .profile .delete-account {
   padding-top: 0;
+}
+
+.profile .col-md-9 {
+	padding-left: 5px;
+}
+
+.profile .op {
+	margin-bottom: 3px;
 }
