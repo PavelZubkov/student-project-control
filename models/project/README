@@ -1,0 +1,8 @@
+Работа с проектами, коллекцией projects
+
+документ коллекции projects имеет структуру:
+  _id ObjectId
+  name String
+  description String {1000}
+  tasks ObjectId 
+  team Array [ObjectId]

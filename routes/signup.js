@@ -6,7 +6,7 @@ var log = require('../libs/log.js')(module);
 var User = require('../models/user');
 
 router.get('/', function(req, res, next) {
-  res.render('signup');
+  res.render('signup', { title: 'Регистрация'} );
 });
 
 router.post('/', function(req, res, next) {

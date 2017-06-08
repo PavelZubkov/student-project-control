@@ -4,10 +4,20 @@
             <div class="col-md-1"></div>
             <div class="col-md-10">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="/">Мои проекты</a></li>
+                    
+                    {{#if user}}
+                    <li><a href="/">Проекты</a></li>
                     <li><a href="/events">События</a></li>
                     <li><a href="/profile">Профиль</a></li>
-                    <li><a href="#">Поддержка</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Поддержка<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="/userguide">Руководство пользователя</a></li>
+                        <li><a href="/feedback">Обратная связь</a></li>
+                      </ul>
+                    </li>
+                    {{/if}}
+                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {{#unless user}}

@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>{{title}}</title>
     {{!-- <link rel="stylesheet" href="/vendor/bower_components/jquery-ui/themes/base/jquery-ui.css"> --}}
-    <link rel="stylesheet" href="/vendor/bower_components/jquery-ui/themes/base/datepicker-bootstrap-style.css">
+    {{!--<link rel="stylesheet" href="/vendor/bower_components/jquery-ui/themes/base/datepicker-bootstrap-style.css">--}}
     <link rel="stylesheet" href="/vendor/bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/vendor/bower_components/bootstrap-select/dist/css/bootstrap-select.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/blocks/pmenu/__control/__control.css">
+    <link rel="stylesheet" href="/blocks/pmenu/__list/__list.css">
+    <link rel="stylesheet" href="/blocks/pmenu/pmenu.css">
 </head>
 <body>
     <header>
         {{> navigation}}
     </header>
     <main>
-        {{> modals}}
         {{{body}}}
     </main>
     <footer>
@@ -26,5 +28,9 @@
     <script src="/vendor/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="/vendor/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/blocks/pmenu/__control/__control.js"></script>
+    <script src="/blocks/pmenu/__list/__list.js"></script>
+    <script src="/blocks/pmenu/pmenu.js"></script>
+    
 </body>
 </html>

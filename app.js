@@ -7,6 +7,7 @@ const exphbs  = require('express-handlebars');
 const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
+const log = require('./libs/log')(module);
 
 module.exports = function (app) {
   
@@ -38,6 +39,14 @@ module.exports = function (app) {
   	res.send('404 — Не найдено');
   });
   
+  // app.use(function(err, req, res, next) {
+  //   log.debug(err);
+  //   req.session.destroy();
+  //   res.status(500).end(err);
+  // });
+
+
+
 //   app.use(function(err, req, res, next) {
 // 	if (typeof err == 'number') {
 // 		err = new HttpError(err);

@@ -24,22 +24,22 @@ $(function() {
       // ничего
     } else {
       $.ajax({
-			  url: "/profile",
-  			method: "POST",
-  		// 	data: JSON.stringify(user),
-  		  data: user,
-  			error: function(err) {
+        url: "/profile",
+        method: "POST",
+      // 	data: JSON.stringify(user),
+        data: user,
+        error: function(err) {
           $('.msg p').text('Ошибка');
-  				$('.msg').removeClass('text-info').addClass('text-danger');
-  			},
-  			statusCode: {
-  				200: function() {
-  				  $('.msg p').text('Сохранено. Обновите страницу');
-  				  $('.msg').removeClass('text-info').addClass('text-success');
-  				  window.location.reload();
-  			},
-			}
-		});
+          $('.msg').removeClass('text-info').addClass('text-danger');
+        },
+        statusCode: {
+          200: function() {
+            $('.msg p').text('Сохранено. Обновите страницу');
+            $('.msg').removeClass('text-info').addClass('text-success');
+            window.location.reload();
+        },
+      }
+    });
     }
   };
   
@@ -65,6 +65,27 @@ $(function() {
     $('.profile').on('click', '#change', oldUser, clickBtnSave);
   };
   
+  const clickBtnDestroy = function clickBtnDestroy() {
+    const password = prompt('Введите пароль', '');
+    $.ajax({
+      url: "/profile/destroy",
+      method: "POST",
+      // 	data: JSON.stringify(user),
+      data: { password: password},
+      error: function(err) {
+        console.log(err);
+      },
+      statusCode: {
+        200: function() {
+          // window.location.reload();
+          window.location.href = '/signout';
+          alert('OK');
+        }
+      }
+    });
+  };
+  
   $('.profile').on('click', '#change', clickBtnChange);
+  $('.profile').on('click', '#destroy', clickBtnDestroy);
 
 });

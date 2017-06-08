@@ -2,7 +2,8 @@ const MongoClient = require('mongodb').MongoClient;
 
 const mongo = {
   db: null,
-  users: null
+  users: null,
+  projects: null
 };
 
 exports.connect = function (url, done) {
@@ -20,10 +21,16 @@ exports.connect = function (url, done) {
         throw err;
       }
       mongo.users = users;
-      done();
+      db.collection('projects', function(err, projects) {
+        if (err) {
+          throw err;
+        }
+        mongo.projects = projects;
+        done();
+      });
     });
   });
-}
+};
 
 exports.get = function () {
   return mongo;

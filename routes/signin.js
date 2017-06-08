@@ -6,12 +6,7 @@ const log = require('../libs/log.js')(module);
 const User = require('../models/user');
 
 router.get('/', function(req, res, next) {
-	// Если уже залогинен - можно перенаправить на main
-	if (req.session.userId) {
-		res.redirect('/');
-	} else {
-		res.render('signin');
-	}
+	res.render('signin', { title: 'Вход' });
 });
 
 router.post('/', function(req, res, next) {

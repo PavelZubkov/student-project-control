@@ -6,16 +6,10 @@ const User = require('../models/user');
 const ObjectId = require('mongodb').ObjectId;
 
 router.get('/', function(req, res, next) {
-	if (!req.session.userId) {
-	  res.redirect('/signin');  
-	}
-	res.render('profile');
+	res.render('profile', { title: 'Профиль'} );
 });
 
 router.post('/', function(req, res, next) {
-	if (!req.session.userId) {
-		res.redirect('/signin'); // перенести это и остальные подобные редиректы, в отдельную функцию middleware
-	}
 	const user = {};
   const props = ['username', 'oldPassword', 'newPassword', 'email', 'firstName', 'lastName', 'initials'];
   for (let prop of props) {
@@ -32,4 +26,16 @@ router.post('/', function(req, res, next) {
   });
 });
 
+router.post('/destroy', function(req, res, next) {
+	const id = new ObjectId(req.session.userId);
+	const password = req.body.password;
+	console.log(id, password);
+	User.remove(id, password, function(err) {
+		if (err) {
+			return next(err);
+		}
+		req.session.destroy();
+		res.status(200).end();
+	});
+});
 module.exports = router;
