@@ -14,11 +14,9 @@
     "mongodb": "^2.2.26",
     "nconf": "^0.8.4",
     "validate": "^3.0.1",
-    "validator": "^7.0.0",
-    "winston": "^2.3.1"
+    "validator": "^7.0.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
     "mocha": "^3.3.0",
     "nodemon": "^1.11.0"
   },

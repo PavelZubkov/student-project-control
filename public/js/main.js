@@ -87,5 +87,14 @@ $(function() {
   
   $('.profile').on('click', '#change', clickBtnChange);
   $('.profile').on('click', '#destroy', clickBtnDestroy);
-
+  
+  
+  // .!
+  $('.del_t').on('click', function() {
+    prompt('Введите адресс эл.почты', '');
+  });
+  
+  $('#show-modal-create-task').on('click', function() {
+			$('#list-of-task_modals_create-task').modal('show');
+	});
 });

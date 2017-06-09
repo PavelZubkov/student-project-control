@@ -57,3 +57,22 @@
 .project-header {
 	margin-top: 20px;
 }
+
+.th_name {
+	width: 200px;
+}
+
+.mini-initials {
+	margin: 0;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	padding: 0px 3px;
+	display: inline-block;
+	background-color: #337ab7;
+	border: 1px;
+	border-color: #337ab7;
+	border-radius: 3px;
+	color: rgb(255, 255, 255);
+	font-family: "Helvetica Neue", Helvetica, Arial;
+	font-size: 12px;
+}
