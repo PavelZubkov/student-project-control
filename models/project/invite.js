@@ -36,15 +36,24 @@ const ObjectId = require('mongodb').ObjectId;
  * Добавляет пользователья в проект, а проект в пользователя
  *
  */
-const addUser = function addUser(projectId, userId, cb) {
+const addUser = function addUser(projectId, userId, cb, options) {
   const query = {
     _id: userId
   };
-  const update = {
-    $push: {
-      projects: projectId
-    }
-  };
+  let update;
+  if (options) {
+    update = {
+      $pull: {
+        projects: projectId
+      }
+    };
+  } else {
+    update = {
+      $push: {
+        projects: projectId
+      }
+    };
+  }
   db.users.findOneAndUpdate(
     query,
     update,
@@ -55,15 +64,25 @@ const addUser = function addUser(projectId, userId, cb) {
       // if (!r.ok) {
       //   return 
       // }
+      let update;
+      if (options) {
+        update = {
+          $pull: {
+            team: userId
+          }
+        };
+      } else {
+        update = {
+          $push: {
+            team: userId
+          }
+        };
+      }
       db.projects.findOneAndUpdate(
         {
           _id: projectId
         },
-        {
-          $push: {
-            team: userId
-          }
-        },
+        update,
         function(err, r) {
           if (err) {
             return cb(err);
@@ -74,6 +93,7 @@ const addUser = function addUser(projectId, userId, cb) {
     }
   );
 };
+exports.changeUser = addUser;
 /**
  * Проверяет состоит ли пользователь userId в проекте projectId
  *  если да - cb(new Error(пользователь уже в проекте))
@@ -98,6 +118,7 @@ const includedInProject = function includedInProject(projectId, userId, cb) {
     }
   );
 };
+exports.includedInProject = includedInProject;
 /**
  * Проверяет, есть ли пользователь с таким email,
  *  возвращает id этого пользователя
@@ -119,6 +140,7 @@ const checkEmail = function checkEmail(email, cb) {
     }
   );
 };
+exports.checkEmail = checkEmail;
 /**
  * Добавляет пользователя в проект, по email адресу
  * @param {ObjectId} id ид проекта, в который добавляется пользователь
