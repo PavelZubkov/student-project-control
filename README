@@ -35,7 +35,8 @@ r	  kick - убрать пользователя из проекта
     Клиент - Project
 r		страница команды проекта
 		
-  Сервер, логика task. Поля: name, description, members, dueDate, state(черновик|в очереди|выполнено|завершено) 
+  Сервер, логика task. Поля: name, description, members, dueDate, state(черновик|в очереди|выполнено|завершено)
+  	validate - валидация полей
 		create - создание
 		delete - удаление
 		get - получение данных задачи
