@@ -1,6 +1,29 @@
 'use strict';
 $(function() {
   
+  // team page
+  $('.pteam__btnInviteMember').on('click', function() {
+    const email = prompt('Введите email', '');
+    $.post(
+      window.location.href + '/invite',
+      { email: email },
+      function(data, textStatus, jqXHR) {
+        window.location.reload();
+      }
+    );
+  });
+  $('.pteam__btnKickMember').on('click', function() {
+    const email = prompt('Введите email', '');
+    $.post(
+      window.location.href + '/kick',
+      { email: email },
+      function(data, textStatus, jqXHR) {
+        window.location.reload();
+      }
+    );
+  });
+  
+  
   // profile
   const clickBtnSave = function clickBtnSave(event) {
     const props = ['username', 'password', 'email', 'firstName', 'lastName', 'initials'];

@@ -4,6 +4,7 @@ const db = require('./libs/db.js');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const exphbs  = require('express-handlebars');
+const helpers = require('handlebars-helpers')();
 const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
@@ -13,7 +14,12 @@ module.exports = function (app) {
   
   // app.enable('view cache');
   
-  app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+  var hbs = exphbs.create({
+    // Specify helpers which are only registered on this instance.
+    helpers: helpers,
+    defaultLayout: 'main'
+  });
+  app.engine('handlebars', hbs.engine);
   app.set('view engine', 'handlebars');
   
   app.use(bodyParser.json());

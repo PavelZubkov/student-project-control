@@ -1,8 +1,8 @@
 <div class="pteam">
   <h4><small>Список участников проекта</small></h4>
   <div class="wrapper">
-    <button type="button" class="btn btn-default add_t">Пригласить</button>
-    <button type="button" class="btn btn-danger del_t">Исключить</button>
+    <button type="button" class="btn btn-default pteam__btnInviteMember">Пригласить</button>
+    <button type="button" class="btn btn-danger pteam__btnKickMember">Исключить</button>
   </div>
   <table class="table">
     <thead>
@@ -14,12 +14,16 @@
       </tr>
     </thead>
     <tbody>
+      {{#each project.team}}
       <tr>
-        <th>1</th>
-        <td>Зубков</td>
-        <td>Павел</td>
-        <td>zubkov_p@mail.ru</td>
+        <th>{{add @index 1}}</th>
+        {{#this}}
+        <td>{{firstName}}</td>
+        <td>{{lastName}}</td>
+        <td>{{email}}</td>
+        {{/this}}
       </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>
