@@ -16,7 +16,8 @@ describe('task', function() {
       db = mongo.get();
       db.projects.insertOne(
         {
-          tasks: []
+          tasks: [],
+          name: 'Как узнать?'
         },
         function(err, r) {
           if (err) {
@@ -106,6 +107,73 @@ describe('task', function() {
           });
         }
       );
+    });
+  });
+  
+  describe('get', function() {
+    const taskId = new ObjectId();
+    
+    beforeEach('создать задачу', function(done) {
+      db.projects.findOneAndUpdate(
+        {
+          _id: projectId,
+        },
+        {
+          $push: {
+            tasks: {
+              id: taskId,
+              name: 'for get',
+              members: [],
+              dueDate: new Date(),
+              state: 'В предзавершении'
+            }
+          }
+        }, { returnOriginal: false },
+        function(err, r) {
+          if (err) {
+            throw err;
+          }
+          Task.create(projectId, 'opw', function(err) {
+            if (err) {
+              throw err;
+            }
+            return done();
+          });
+        }
+      );
+    });
+    
+    afterEach('удалить задачу', function(done) {
+      db.projects.findOneAndUpdate(
+        {
+          _id: projectId,
+        },
+        {
+          $pull: {
+            tasks: {
+              id: taskId
+            }
+          }
+        },
+        function(err, r) {
+          if (err) {
+            throw err;
+          }
+          return done();
+        }
+      );
+    });
+    it('должна возвращать данные задачи', function(done) {
+      Task.get(projectId, taskId, function(err, doc) {
+        if (err) {
+          throw err;
+        }
+        if (doc.name === 'for get') {
+          return done();
+        } else {
+          return done(new Error('Вовзращено что-то не то'));
+        }
+      });
     });
   });
 });
