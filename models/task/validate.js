@@ -62,8 +62,45 @@ const state = schema({
   }
 });
 
-module.exports = function validate(names, object) {
-  if (arguments === 1) {
-    object = names;
+const Task = {
+  name: name,
+  description: description,
+  members: members,
+  dueDate: dueDate,
+  state: state
+};
+
+/**
+ * Валидация полей name, description, members, dueDate, state
+ * 
+ * @param {Object} task объект с проверяемыми полями
+ * @param {Array} options Опциональный, если указан, то будут проверятся
+ * только указанные в нем поля
+ */
+module.exports = function validate(task, options) {
+  if (!options) {
+    options = ['name', 'description', 'members', 'dueDate', 'state'];
+  } else {
+    if (!Array.isArray(options)) {
+      throw new Error('Параметр Options должен быть массивом');
+    }
+    for (let prop of options) {
+      if (
+        prop !== 'name' &&
+        prop !== 'description' &&
+        prop !== 'members' &&
+        prop !== 'dueDate' &&
+        prop !== 'state'
+      ) {
+        throw new Error(`Опечатка в названии свойства ${prop}`);
+      }
+    }
   }
-}
+  
+  for (let prop of options) {
+    let error = Task[prop].validate( { [prop]: task[prop] });
+    if (error.length) {
+      return error[0];
+    }
+  }
+};
