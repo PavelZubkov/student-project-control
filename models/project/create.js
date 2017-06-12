@@ -17,7 +17,7 @@ exports.create = function create(name, userId, cb, options) {
   let project = {
     name: name,
     description: '',
-    tasks: null,
+    tasks: [],
     team: [id]
   };
   //хак
