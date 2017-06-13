@@ -109,7 +109,51 @@ describe('task', function() {
 
   describe('#get', function() {
     const taskId = new ObjectId();
-
+    let user1, user2;
+    
+    before('создать двух пользователей', function(done) {
+      const save = require('../models/user/save.js').save;
+      save({
+        username: 'first1',
+        password: 'qwertyu1',
+        email: 'user@user1',
+        firstName: 'firstU1',
+        lastName: 'lasdtU1'
+      }, function(err, id) {
+        if (err) {
+          throw err;
+        }
+        user1 = id;
+        save({
+          username: 'first2',
+          password: 'qwertyu2',
+          email: 'user@user2',
+          firstName: 'firstU2',
+          lastName: 'lasdtU2'
+        }, function(err, id) {
+          if (err) {
+            throw err;
+          }
+          user2 = id;
+          return done();
+        });
+      });
+    });
+    
+    after('удалить двух пользователей', function(done) {
+      db.users.deleteMany({
+        $or: [
+            { _id: user1 },
+            { _id: user2 }
+          ]
+      }, function(err, r) {
+        if (err) {
+          throw err;
+        }
+        return done();
+      });
+    });
+    
     beforeEach('создать задачу', function(done) {
       db.projects.findOneAndUpdate({
           _id: projectId,
@@ -118,7 +162,7 @@ describe('task', function() {
             tasks: {
               id: taskId,
               name: 'for get',
-              members: [],
+              members: [user1, user2],
               dueDate: new Date(),
               state: 'В предзавершении'
             }
