@@ -205,17 +205,22 @@ describe('Task#move', function(){
      * Вызывает task.move и проверяет результат вызова
      *
      */
-    const moveTaskAndCheck = function moveTaskAndCheck(i, j, done) {
+    const moveTaskAndCheck = function moveTaskAndCheck(i, j, cb) {
       let id = tasksId[i-1];
       Task.move(projectId, id, j, function(err) {
         if (err) {
-          throw err;
+          return cb(err);
         }
         getTasks(projectId, function(err, tasks) {
           if (err) {
-            throw err;
+           return cb(err);
           }
-          done(checkPosition(tasks, id, i, j));
+          const error = checkPosition(tasks, id, i, j);
+          if (error instanceof Error) {
+            return cb(error);
+          } else {
+            return cb(null);
+          }
         });
       });
     };
@@ -229,11 +234,23 @@ describe('Task#move', function(){
           i-1 === j // Перемещать задачу на перед собой?
         ) {
           it(`вернуть ошибку, при переносе ${i}-й задачи за ${j}-ю позицию`, function(done) {
-            moveTaskAndCheck(i, j, done);
+            moveTaskAndCheck(i, j, function(err) {
+              if (err) {
+                return done();
+              } else {
+                return done(new Error('Ошибка не возвращена'));
+              }
+            });
           });
         } else {
           it(`выполниться без ошибок, при переносе ${i}-й задачи за ${j}-ю позицию`, function(done) { 
-            moveTaskAndCheck(i, j, done);
+            moveTaskAndCheck(i, j, function(err) {
+              if (!err) {
+                return done();
+              } else {
+                return done(err);
+              }
+            });
           });
         } 
       }
