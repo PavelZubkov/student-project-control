@@ -5,13 +5,15 @@ const remove = require('./remove.js');
 const get = require('./get.js');
 const update = require('./update.js');
 const move = require('./move.js');
+const getAll = require('./getAll.js');
 
 const Task = {
   create: create,
   remove: remove,
   get: get,
   update: update,
-  move: move
+  move: move,
+  getAll: getAll
 };
 
 module.exports = Task;
