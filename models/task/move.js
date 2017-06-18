@@ -15,7 +15,6 @@ module.exports = function move(projectId, taskId, position, cb) {
   }
   projectId = new ObjectId(projectId);
   taskId = new ObjectId(taskId);
-  
   db.projects.findOneAndUpdate({
     _id: projectId,
     'tasks.id': taskId
@@ -31,13 +30,16 @@ module.exports = function move(projectId, taskId, position, cb) {
       return cb(new Error('Нет проекта с таким id'));
     }
     let oldPosition, task;
-    r.value.tasks.some(function(elem, index) {
+    const found = r.value.tasks.some(function(elem, index) {
       if (taskId.equals(elem.id)) {
         task = elem;
         oldPosition = index+1;// отсчет с единицы
         return true;
       }
     });
+    if (!found) {
+      return cb(new Error('Задача с таким id не найдена'));
+    }
     if ( // должна вернуть ошибку
       oldPosition === position || // Перемещать задачу за себя?
       oldPosition-1 === position // Перемещать задачу на перед собой?

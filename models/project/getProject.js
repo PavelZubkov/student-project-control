@@ -3,6 +3,7 @@
 const db = require('../../libs/db.js').get();
 const ObjectId = require('mongodb').ObjectId;
 const log = require('../../libs/log.js')(module);
+const Task = require('../task');
 
 /**
  * Возвращает массив с данными о участниках команды проекта
@@ -40,10 +41,13 @@ exports.getTeam = getTeam;
  * Возвращает массив с данными о задачах проекта
  *
  */
-const getTasks = function getTasks(tasksId, cb) {
-  const id = new ObjectId(tasksId);
-  const tasks = 'Задачи еще не реализованы';
-  return cb(null, tasks);
+const getTasks = function getTasks(projectId, cb) {
+  Task.getAll(projectId, function(err, tasks) {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, tasks);
+  });
 };
 /**
  * Возвращает объект с данными проекта
@@ -82,7 +86,7 @@ exports.getProject = function getProject(id, cb) {
       project.id = doc._id;
       project.name = doc.name;
       project.description = doc.description;
-      getTasks(doc.tasks, function(err, tasks) {
+      getTasks(id, function(err, tasks) {
         if (err) {
           return cb(err);
         }

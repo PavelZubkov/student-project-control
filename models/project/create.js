@@ -39,7 +39,19 @@ exports.create = function create(name, userId, cb, options) {
       if (result.insertedCount !== 1) {
         return cb(new Error('Документ не вставлен'));
       }
-      cb(null, result.insertedId);
+      // Добавление пользователю
+      db.users.findOneAndUpdate({
+        _id: id
+      }, {
+        $push: {
+          projects: result.insertedId
+        }
+      }, function(err, r) {
+        if (err) {
+          return(err);
+        }
+        return cb(null, result.insertedId);
+      });
     }
   );
 };

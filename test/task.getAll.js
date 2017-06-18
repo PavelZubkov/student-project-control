@@ -34,7 +34,7 @@ describe('Task#getAll', function() {
         id: id,
         name: `task#${i+1}`,
         description: 'lorem ipsum dolor color hi',
-        members: [new ObjectId('594145a7146e0370205d7ee6'), new ObjectId('594145b0146e0370205d7ee9')],
+        members: [new ObjectId('594258822fc26514ece3dd39'), new ObjectId('594258882fc26514ece3dd3c')],
         dueDate: new Date(1999+i, 11, 20),
         state: 'Завершено'
       };

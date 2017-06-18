@@ -145,6 +145,10 @@ module.exports = function update(projectId, taskId, newValue, cb) {
   projectId = new ObjectId(projectId);
   taskId = new ObjectId(taskId);
   
+  if (!Object.keys(newValue).length) {
+    return cb(null, {});
+  }
+  
   const error = check(newValue);
   if (error) {
     return cb(error);

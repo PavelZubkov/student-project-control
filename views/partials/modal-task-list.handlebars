@@ -1,43 +1,57 @@
 <!-- modals -->
-	<!-- add new project -->
+  <!-- add new project -->
 <div class="modal fade" id="list-of-task_modals_create-task" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Редактирование задачи</h4>
-			</div>
-			<div class="modal-body row">
-	  			<div class="col-md-8">
-				  	<label for="name">Название*</label>
-				  	<input type="text" class="form-control" id="name" name="name">
-					<label for="description">Описание</label>
-				  	<textarea class="form-control" rows="3" id="description" name="description"></textarea>
-				  	<label>Подотчетные</label><br>
-					  	<input type="text" class="form-control" id="name" name="name" placeholder="Введите инициалы, через запятую">
-						</select>
-	  			</div>
-	  			<div class="col-md-4">
-	  				<label for="datepicker">Срок</label>
-	  				<input type="text" class="form-control" id="datepicker" name="datepicker" placeholder="ДД/ММ[/ГГ]">
-	  				<label for="status">Состояние</label>
-				  	<select class="selectpicker" data-width="100%" name="status" id="status">
-						  	<option value="planning">Черновик</option>
-						  	<option value="queue">В очереди</option>
-						  	<option value="executed">Выполненная</option>
-						  	<option value="value">Завершенная</option>
-					</select>
-					<label for="members">Порядковый номер</label>
-						<input type="text" class="form-control" id="name" name="name" placeholder="Номер">
-					</select>
-	  			</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-				<button type="button" class="btn btn-primary" id="btnCreateTask">Сохранить</button>
-			</div>
-		</div>
-	</div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Редактирование задачи</h4>
+      </div>
+      <div class="modal-body row">
+          <div class="col-md-8">
+            <label for="name">Название*</label>
+            <input type="text" class="form-control" id="name" name="name">
+          <label for="description">Описание</label>
+            <textarea class="form-control" rows="3" id="description" name="description"></textarea>
+            <label>Подотчетные</label><br>
+            {{!--<input type="text" class="form-control" id="members" name="name" placeholder="Введите инициалы, через запятую">--}}
+            <select class="selectpicker" data-width="100%" name="members" id="members" multiple title="Выбрать..." data-live-search="true" data-size="5">
+              {{#each project.team}}
+                {{#this}}
+                <option value="{{id}}">{{firstName}} {{lastName}}</option>
+                {{/this}}
+              {{/each}}
+            </select>
+            <label for="move">Переместить на позицию</label>
+            <select class="selectpicker" data-width="100%" name="move" id="move" title="Выбрать...">
+                  <option value="0">В начало списка</option>
+              {{#each project.tasks}}
+                {{#this}}
+                  <option value="{{add @index 1}}">после {{add @index 1}}. {{name}}</option>
+                {{/this}}
+              {{/each}}
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="datepicker">Срок</label>
+            <input type="text" class="form-control" id="datepicker" name="datepicker" placeholder="Выбрать...">
+            <label for="status">Состояние</label>
+            <select class="selectpicker" data-width="100%" name="state" id="state">
+                <option value="planning">Черновик</option>
+                <option value="queue">В очереди</option>
+                <option value="executed">Выполнено</option>
+                <option value="complete">Завершено</option>
+            </select>
+            <label for="position">Порядковый номер</label>
+            <input type="text" class="form-control" id="position" name="position" disabled>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary" id="modal_save_task">Сохранить</button>
+      </div>
+    </div>
+  </div>
 </div> <!-- /add new project -->
 
 

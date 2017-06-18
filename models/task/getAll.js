@@ -22,15 +22,22 @@ module.exports = function getAll(projectId, cb) {
     if (!doc) {
       return cb(new Error('Проект отсутствует'));
     }
+    
     const query = {
       $or: []
     };
+    
     for (let task of doc.tasks) {
       if (task.members.length) {
         for (let member of task.members) {
-          query.$or.push( { _id: member } );
+          query.$or.push( { _id: new ObjectId(member) } ); // нужно подставить данные мемберов, вместо их идов
         }
       }
+    }
+    // console.log(query);
+    // return;
+    if (!query.$or.length) {
+      return cb(null, doc.tasks);
     }
     const cursor = db.users.find(query);
     cursor.toArray(function(err, docs) {
