@@ -1,0 +1,4 @@
+#Пользовательсикй фидбек пишется сюда
+Mon Jun 19 2017 09:56:11 GMT+0000 (UTC) theme: Проверка фидбека
+     from: Дракон Артамон, email: zubkov_p@mail.ru
+     message: lorem ipsum appppp
