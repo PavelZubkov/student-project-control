@@ -6,6 +6,7 @@ const get = require('./get.js');
 const update = require('./update.js');
 const move = require('./move.js');
 const getAll = require('./getAll.js');
+const copy = require('./copy.js');
 
 const Task = {
   create: create,
@@ -13,7 +14,8 @@ const Task = {
   get: get,
   update: update,
   move: move,
-  getAll: getAll
+  getAll: getAll,
+  copy: copy
 };
 
 module.exports = Task;

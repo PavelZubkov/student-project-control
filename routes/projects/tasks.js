@@ -103,4 +103,15 @@ router.post('/:id/update', function(req, res, next) {
   );
 });
 
+router.post('/:id/copy', function(req, res, next) {
+  const projectId = new ObjectId(req.params.id);
+  const taskId = new ObjectId(req.body.id);
+  Task.copy(projectId, taskId, function(err) {
+    if (err) {
+      return next(err);
+    }
+    res.end();
+  });
+});
+
 module.exports = router;

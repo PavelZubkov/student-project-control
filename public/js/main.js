@@ -1,6 +1,22 @@
 'use strict';
 $(function() {
   
+  // Копирование задачи
+  $('.copy_task').on('click', function(e) {
+    const id = $(e.currentTarget).data('id');
+    $.post(
+      window.location.href + '/copy',
+      { id },
+      function(data, status) {
+        if (status === 'success') {
+          window.location.reload();
+        } else {
+          alert('Ошибка сервера!');
+        }
+      }
+    );
+  });
+  
   // страница с задачами проекта
   
   // редактировать задачу
