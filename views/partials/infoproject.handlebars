@@ -1,9 +1,42 @@
 <div class="pinfo">
   <h4><small>Описание проекта</small></h4>
-  <form class="login-form" method="POST">
-    <div class="form-group">
-      <textarea class="form-control" rows="5" id="description" name="description"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary pull-right">Сохранить</button>
-  </form>
+  {{#if project.description}}
+    <p class="info">{{project.description}}</p>
+    <button type="button" class="btn btn-default btn_edit">Редактировать</button>
+    <form class="form edit_info hidden" method="POST">
+      <div class="form-group">
+        <textarea class="form-control" rows="5" id="description" name="description">{{project.description}}</textarea>
+      </div>
+      <button type="button" class="btn btn-primary pull-right btn_save">Сохранить</button>
+    </form>
+  {{else}}
+    <form class="form edit_info" method="POST">
+      <div class="form-group">
+        <textarea class="form-control" rows="5" id="description" name="description"></textarea>
+      </div>
+      <button type="button" class="btn btn-primary pull-right btn_save">Сохранить</button>
+    </form>
+  {{/if}}
+  <script>
+    window.onload = function() {
+      $('.btn_edit').on('click', function() {
+        $('.info').addClass('hidden');
+        $('.btn_edit').addClass('hidden');
+        $('.edit_info').removeClass('hidden');
+      });
+      
+      $('.btn_save').on('click', function() {
+        const data = $('textarea').val();
+        $.post(
+          window.location.href,
+          { description: data },
+          function(data, status) {
+            if (status === 'success') {
+              window.location.reload();
+            }
+          }
+        );
+      });
+    };
+  </script>
 </div>
